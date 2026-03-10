@@ -87,9 +87,9 @@ for row_start in range(0, total, COLS_PER_ROW):
             # Header
             badges = []
             if is_cat_miss:
-                badges.append(":red[CAT]")
+                badges.append(":red[Category Mismatch]")
             if is_mat_miss:
-                badges.append(":orange[MAT]")
+                badges.append(":orange[Material Mismatch]")
 
             st.markdown(f"**{item_id}** — {row.get('main_cat', '')} / {row.get('sub_cat', '')}  {' '.join(badges)}")
 
