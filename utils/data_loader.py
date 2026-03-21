@@ -11,10 +11,13 @@ DATA_DIR = Path(__file__).parent.parent / "data"
 
 
 def list_result_files() -> list[str]:
-    """Return validation result CSV filenames sorted newest-first."""
+    """Return result CSV filenames sorted newest-first.
+
+    Accepts any CSV in the data directory except error/report files.
+    """
     files = []
     for f in DATA_DIR.iterdir():
-        if f.name.startswith("validation_results_") and f.suffix == ".csv" and "_errors" not in f.name:
+        if f.suffix == ".csv" and "_errors" not in f.name:
             files.append(f.name)
     return sorted(files, reverse=True)
 
