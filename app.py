@@ -54,7 +54,12 @@ existing = sorted(
 if existing:
     with st.expander(f"{len(existing)} CSV file(s) loaded"):
         for f in existing:
-            st.text(f)
+            col_name, col_btn = st.columns([5, 1])
+            col_name.text(f)
+            if col_btn.button("Delete", key=f"del_{f}"):
+                (DATA_DIR / f).unlink()
+                st.cache_data.clear()
+                st.rerun()
 else:
     st.info("No CSV files yet. Upload above or place files in the `data/` folder.")
 
